@@ -323,6 +323,9 @@ OBJECTS=vgmstream.o streamfile.o util.o formats.o $(CODING_OBJS) $(LAYOUT_OBJS) 
 
 libvgmstream.a: $(OBJECTS)
 	$(AR) crs libvgmstream.a $(OBJECTS)
+	
+libvgmstream.so: $(OBJECTS)
+	$(CC) $^ -shared -Wl,-soname -Wl,$@.1 -o $@.1.0
 
 vgmstream-deps:
 	$(CC) $(CFLAGS) -M -o vgmstream-deps

@@ -1,20 +1,22 @@
 export SHELL = /bin/sh
-export CFLAGS=-Wall -O3 -I../ext_includes -DUSE_ALLOCA -DVGM_USE_MAIATRAC3PLUS
-# -DVGM_USE_G7221 -DVGM_USE_G719 
-export LDFLAGS=-L../src -L ../ext_libs -lvgmstream -lvorbisfile -lmpg123 -lat3plusdecoder -lpthread -lm
-#-lg719_decode -lg7221_decode -lsiren_decode
+export CFLAGS=-Wall -g -fPIC -I../ext_includes -DUSE_ALLOCA  $(OPTFLAGS)
+export LDFLAGS=-L../src -L ../ext_libs -lvgmstream -lvorbisfile -lvorbis -lmpg123 -lpthread -lm
+#-lavutil -lavformat -lavcodec
 export CC=gcc
 export AR=ar
 export STRIP=strip
 
-.PHONY: libvgmstream.a
+.PHONY: libvgmstream.a libvgmstream.so
 
 test.exe: libvgmstream.a
 	$(CC) $(CFLAGS) $(LDFLAGS) "-DVERSION=\"`../version.sh`\"" test.c $(LDFLAGS) -o vgmstream
-	$(STRIP) vgmstream
 
 libvgmstream.a:
 	$(MAKE) -C ../src $@
+ 
+libvgmstream.so:
+	$(MAKE) -C ../src $@
 
 clean:
+	$(MAKE) -C ../src $@
 	rm -f test test.o
