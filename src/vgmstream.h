@@ -121,9 +121,10 @@ typedef enum {
     coding_SNDS_IMA,        /* Heavy Iron Studios .snds IMA ADPCM */
     coding_OTNS_IMA,        /* Omikron The Nomad Soul IMA ADPCM */
     coding_FSB_IMA,         /* FMOD's FSB multichannel IMA ADPCM */
+    coding_WWISE_IMA,       /* Audiokinetic Wwise IMA ADPCM */
 
-    coding_WS,              /* Westwood Studios VBR ADPCM */
     coding_MSADPCM,         /* Microsoft ADPCM */
+    coding_WS,              /* Westwood Studios VBR ADPCM */
     coding_AICA,            /* Yamaha AICA ADPCM */
     coding_L5_555,          /* Level-5 0x555 ADPCM */
     coding_SASSC,           /* Activision EXAKT SASSC DPCM */
@@ -150,6 +151,7 @@ typedef enum {
 #ifdef VGM_USE_VORBIS
     coding_ogg_vorbis,      /* Xiph Vorbis (MDCT-based) */
     coding_fsb_vorbis,      /* FMOD's Vorbis without Ogg layer */
+    coding_wwise_vorbis,    /* Audiokinetic's Vorbis without Ogg layer */
 #endif
 
 #ifdef VGM_USE_MPEG
@@ -432,7 +434,7 @@ typedef enum {
     meta_PS2_XA2_RRP,       /* RC Revenge Pro */
     meta_PS2_STM,           /* Red Dead Revolver .stm, renamed .ps2stm */
     meta_NGC_DSP_KONAMI,    /* Konami DSP header, found in various games */
-	meta_UBI_CKD,           /* Ubisoft CKD RIFF header from Rayman Origins */
+	meta_UBI_CKD,           /* Ubisoft CKD RIFF header (Rayman Origins Wii) */
 
     meta_XBOX_WAVM,			/* XBOX WAVM File */
     meta_XBOX_RIFF,			/* XBOX RIFF/WAVE File */
@@ -598,6 +600,8 @@ typedef enum {
     meta_X360_PASX,         /* Namco PASX (Soul Calibur II HD X360) */
     meta_XMA_RIFF,          /* Microsoft RIFF XMA */
     meta_X360_AST,          /* Dead Rising (X360) */
+    meta_WWISE_RIFF,        /* Audiokinetic Wwise RIFF/RIFX */
+    meta_UBI_RAKI,          /* Ubisoft RAKI header (Rayman Legends, Just Dance 2017) */
 
 #ifdef VGM_USE_VORBIS
     meta_OGG_VORBIS,        /* Ogg Vorbis */
@@ -719,6 +723,8 @@ typedef struct {
     off_t loop_next_block_offset;   /* saved from next_block_offset */
 
     /* decoder specific */
+    int codec_endian;               /* little/big endian marker; name is left vague but usually means big endian */
+
     uint8_t xa_channel;				/* XA ADPCM: selected channel */
     int32_t xa_sector_length;		/* XA ADPCM: XA block */
 	uint8_t xa_headerless;			/* XA ADPCM: headerless XA block */
@@ -766,8 +772,13 @@ typedef struct {
     ogg_vorbis_streamfile ov_streamfile;
 } ogg_vorbis_codec_data;
 
+/* config for Wwise Vorbis */
+typedef enum { HEADER_TRIAD, FULL_SETUP, INLINE_CODEBOOKS, EXTERNAL_CODEBOOKS, AOTUV603_CODEBOOKS } wwise_setup_type;
+typedef enum { TYPE_8, TYPE_6, TYPE_2 } wwise_header_type;
+typedef enum { STANDARD, MODIFIED } wwise_packet_type;
+
 /* any raw Vorbis without Ogg layer */
-typedef struct  {
+typedef struct {
     vorbis_info vi;             /* stream settings */
     vorbis_comment vc;          /* stream comments */
     vorbis_dsp_state vd;        /* decoder global state */
@@ -778,6 +789,16 @@ typedef struct  {
     size_t buffer_size;
     size_t samples_to_discard;  /* for looping purposes */
     int samples_full;           /* flag, samples available in vorbis buffers */
+
+    /* Wwise Vorbis config */
+    wwise_setup_type setup_type;
+    wwise_header_type header_type;
+    wwise_packet_type packet_type;
+    /* saved data to reconstruct modified packets */
+    uint8_t mode_blockflag[64+1];   /* max 6b+1; flags 'n stuff */
+    int mode_bits;                  /* bits to store mode_number */
+    uint8_t prev_blockflag;         /* blockflag in the last decoded packet */
+
 } vorbis_codec_data;
 #endif
 

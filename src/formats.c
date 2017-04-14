@@ -197,6 +197,7 @@ static const char* extension_list[] = {
     "psnd",
     "psw",
 
+    "rak",
     "ras",
     "raw",
     "rkv",
@@ -298,6 +299,7 @@ static const char* extension_list[] = {
     //"wav", //common
     "wavm",
     "wb",
+    "wem",
     "wii",
     "wmus",
     "wp2",
@@ -418,6 +420,7 @@ static const coding_info coding_info_list[] = {
         {coding_SNDS_IMA,           "Heavy Iron .snds 4-bit IMA ADPCM"},
         {coding_OTNS_IMA,           "Omikron: The Nomad Soul 4-bit IMA ADPCM"},
         {coding_FSB_IMA,            "FSB multichannel 4-bit IMA ADPCM"},
+        {coding_WWISE_IMA,          "Audiokinetic Wwise 4-bit IMA ADPCM"},
         {coding_WS,                 "Westwood Studios ADPCM"},
         {coding_ACM,                "InterPlay ACM"},
         {coding_NWA0,               "NWA DPCM Level 0"},
@@ -436,6 +439,7 @@ static const coding_info coding_info_list[] = {
 #ifdef VGM_USE_VORBIS
         {coding_ogg_vorbis,         "Ogg Vorbis"},
         {coding_fsb_vorbis,         "FSB Vorbis"},
+        {coding_wwise_vorbis,       "Wwise Vorbis"},
 #endif
 #ifdef VGM_USE_MPEG
         {coding_fake_MPEG2_L2,      "MPEG-2 Layer II Audio"},
@@ -816,7 +820,7 @@ static const meta_info meta_info_list[] = {
         {meta_PS3_IVAG,             "PS3 'IVAG' Header"},
         {meta_PS2_2PFS,             "Konami 2PFS header"},
         {meta_RSD6OOGV,             "RSD6/OOGV Header"},
-        {meta_UBI_CKD,              "CKD 'RIFF' Header"},
+        {meta_UBI_CKD,              "Ubisoft CKD RIFF header"},
         {meta_PS2_VBK,              "PS2 VBK Header"},
         {meta_OTM,                  "Otomedius OTM Header"},
         {meta_CSTM,                 "Nintendo 3DS CSTM Header"},
@@ -835,6 +839,8 @@ static const meta_info meta_info_list[] = {
         {meta_X360_PASX,            "Namco PASX header"},
         {meta_XMA_RIFF,             "Microsoft XMA RIFF header"},
         {meta_X360_AST,             "Capcom AST header"},
+        {meta_WWISE_RIFF,           "Audiokinetic Wwise RIFF header"},
+        {meta_UBI_RAKI,             "Ubisoft RAKI header"},
 
 #ifdef VGM_USE_VORBIS
         {meta_OGG_VORBIS,           "Ogg Vorbis"},

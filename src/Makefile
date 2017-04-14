@@ -27,7 +27,9 @@ CODING_OBJS=coding/adx_decoder.o \
     coding/hca_decoder.o \
     coding/ffmpeg_decoder.o \
     coding/ffmpeg_decoder_utils.o \
-    coding/fsb_vorbis_decoder.o
+    coding/fsb_vorbis_decoder.o \
+    coding/wwise_vorbis_decoder.o \
+    coding/wwise_vorbis_utils.o
 
 LAYOUT_OBJS=layout/ast_blocked.o \
     layout/blocked.o \
@@ -315,7 +317,9 @@ META_OBJS=meta/adx_header.o \
     meta/dsp_adx.o \
     meta/bik.o \
     meta/akb.o \
-    meta/x360_ast.o
+    meta/x360_ast.o \
+    meta/wwise.o \
+    meta/ubi_raki.o
 
 EXT_LIBS = ../ext_libs/clHCA.o
 
