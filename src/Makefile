@@ -329,7 +329,7 @@ libvgmstream.a: $(OBJECTS)
 	$(AR) crs libvgmstream.a $(OBJECTS)
 	
 libvgmstream.so: $(OBJECTS)
-	$(CC) $^ -shared -Wl,-soname -Wl,$@.1 -o $@.1.0
+	$(CC) $^ -shared -Wl,-soname -Wl,$@.$(SOVERSION) -o $@.$(SOVERSION)
 
 vgmstream-deps:
 	$(CC) $(CFLAGS) -M -o vgmstream-deps
