@@ -1012,6 +1012,8 @@ typedef struct {
 /* vgmstream "public" API                                                   */
 /* -------------------------------------------------------------------------*/
 
+#include "formats.h"
+
 /* do format detection, return pointer to a usable VGMSTREAM, or NULL on failure */
 VGMSTREAM * init_vgmstream(const char * const filename);
 
