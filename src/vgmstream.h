@@ -13,9 +13,10 @@ enum { PATH_LIMIT = 32768 };
  * done by external libraries.
  * If someone wants to do a standalone build, they can do it by simply
  * removing these defines (and the references to the libraries in the Makefile) */
+#ifndef VGM_DISABLE_VORBIS
 #define VGM_USE_VORBIS
+#endif
 
-/* can be disabled to decode with FFmpeg instead */
 #ifndef VGM_DISABLE_MPEG
 #define VGM_USE_MPEG
 #endif
@@ -37,10 +38,10 @@ enum { PATH_LIMIT = 32768 };
 #endif
 
 #ifdef VGM_USE_G7221
-#include "g7221.h"
+#include <g7221.h>
 #endif
 #ifdef VGM_USE_G719
-#include "g719.h"
+#include <g719.h>
 #endif
 
 #ifdef VGM_USE_MP4V2
@@ -53,7 +54,7 @@ enum { PATH_LIMIT = 32768 };
 #endif
 
 #ifdef VGM_USE_MAIATRAC3PLUS
-#include "maiatrac3plus.h"
+#include <maiatrac3plus.h>
 #endif
 
 #ifdef VGM_USE_FFMPEG
@@ -61,10 +62,11 @@ enum { PATH_LIMIT = 32768 };
 #include <libavformat/avformat.h>
 #endif
 
+#include <clHCA.h>
+
 #include "coding/g72x_state.h"
 #include "coding/acm_decoder.h"
 #include "coding/nwa_decoder.h"
-#include "clHCA.h"
 
 
 /* The encoding type specifies the format the sound data itself takes */
@@ -106,16 +108,16 @@ typedef enum {
 	coding_NDS_PROCYON,     /* Procyon Studio ADPCM */
 
     coding_XBOX,            /* XBOX IMA ADPCM */
-    coding_INT_XBOX,        /* XBOX IMA ADPCM (interleaved) */
+    coding_XBOX_int,        /* XBOX IMA ADPCM (interleaved) */
     coding_IMA,             /* IMA ADPCM (low nibble first) */
-    coding_INT_IMA,         /* IMA ADPCM (interleaved) */
+    coding_IMA_int,         /* IMA ADPCM (interleaved) */
     coding_DVI_IMA,         /* DVI IMA ADPCM (high nibble first), aka ADP4 */
-    coding_INT_DVI_IMA,		/* DVI IMA ADPCM (Interleaved) */
+    coding_DVI_IMA_int,		/* DVI IMA ADPCM (Interleaved) */
     coding_NDS_IMA,         /* IMA ADPCM w/ NDS layout */
     coding_EACS_IMA,
     coding_MS_IMA,          /* Microsoft IMA */
-    coding_RAD_IMA,         /* "Radical ADPCM" IMA */
-    coding_RAD_IMA_mono,    /* "Radical ADPCM" IMA, mono (for interleave) */
+    coding_RAD_IMA,         /* Radical IMA ADPCM */
+    coding_RAD_IMA_mono,    /* Radical IMA ADPCM, mono (for interleave) */
     coding_APPLE_IMA4,      /* Apple Quicktime IMA4 */
     coding_DAT4_IMA,        /* Eurocom 'DAT4' IMA ADPCM */
     coding_SNDS_IMA,        /* Heavy Iron Studios .snds IMA ADPCM */
@@ -130,6 +132,7 @@ typedef enum {
     coding_SASSC,           /* Activision EXAKT SASSC DPCM */
     coding_LSF,             /* lsf ADPCM (Fastlane Street Racing iPhone)*/
     coding_MTAF,            /* Konami MTAF ADPCM (IMA-derived) */
+    coding_MC3,             /* Paradigm MC3 3-bit ADPCM */
 
     /* others */
     coding_SDX2,            /* SDX2 2:1 Squareroot-Delta-Exact compression DPCM */
@@ -605,6 +608,7 @@ typedef enum {
     meta_UBI_RAKI,          /* Ubisoft RAKI header (Rayman Legends, Just Dance 2017) */
     meta_SXD,               /* Sony SXD (Gravity Rush, Freedom Wars PSV) */
     meta_OGL,               /* Shin'en Wii/WiiU (Jett Rocket (Wii), FAST Racing NEO (WiiU)) */
+    meta_MC3,               /* Paradigm games (T3 PS2, MX Rider PS2, MI: Operation Surma PS2) */
 
 #ifdef VGM_USE_VORBIS
     meta_OGG_VORBIS,        /* Ogg Vorbis */

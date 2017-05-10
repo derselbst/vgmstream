@@ -247,6 +247,9 @@
     <ClCompile Include="meta\maxis_xa.c">
       <Filter>meta\Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="meta\mc3.c">
+      <Filter>meta\Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="meta\mca.c">
       <Filter>meta\Source Files</Filter>
     </ClCompile>
@@ -332,9 +335,6 @@
       <Filter>meta\Source Files</Filter>
     </ClCompile>
     <ClCompile Include="meta\ngc_tydsp.c">
-      <Filter>meta\Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="meta\ngc_waa_wac_wad_wam.c">
       <Filter>meta\Source Files</Filter>
     </ClCompile>
     <ClCompile Include="meta\ngc_ymf.c">
@@ -682,6 +682,9 @@
     <ClCompile Include="meta\vsf.c">
       <Filter>meta\Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="meta\waa_wac_wad_wam.c">
+      <Filter>meta\Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="meta\wii_bns.c">
       <Filter>meta\Source Files</Filter>
     </ClCompile>
@@ -781,6 +784,9 @@
     <ClCompile Include="coding\l5_555_decoder.c">
       <Filter>coding\Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="coding\mc3_decoder.c">
+      <Filter>coding\Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="coding\mpeg_decoder.c">
       <Filter>coding\Source Files</Filter>
     </ClCompile>
@@ -809,6 +815,9 @@
       <Filter>coding\Source Files</Filter>
     </ClCompile>
     <ClCompile Include="coding\pcm_decoder.c">
+      <Filter>coding\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="coding\psv_decoder.c">
       <Filter>coding\Source Files</Filter>
     </ClCompile>
     <ClCompile Include="coding\psx_decoder.c">

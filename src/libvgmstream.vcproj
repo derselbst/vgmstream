@@ -444,6 +444,10 @@
 					RelativePath=".\meta\maxis_xa.c"
 					>
 				</File>
+                <File
+                    RelativePath=".\meta\mc3.c"
+                    >
+                </File>
 				<File
 					RelativePath=".\meta\mca.c"
 					>
@@ -580,10 +584,6 @@
 				</File>
 				<File
 					RelativePath=".\meta\ngc_tydsp.c"
-					>
-				</File>
-				<File
-					RelativePath=".\meta\ngc_waa_wac_wad_wam.c"
 					>
 				</File>
 				<File
@@ -1126,6 +1126,10 @@
 					RelativePath=".\meta\vsf.c"
 					>
 				</File>
+                <File
+                    RelativePath=".\meta\waa_wac_wad_wam.c"
+                    >
+                </File>
 				<File
 					RelativePath=".\meta\wii_bns.c"
 					>
@@ -1330,6 +1334,10 @@
 					RelativePath=".\coding\lsf_decoder.c"
 					>
 				</File>
+                <File
+                    RelativePath=".\coding\mc3_decoder.c"
+                    >
+                </File>
 				<File
 					RelativePath=".\coding\mpeg_decoder.c"
 					>
@@ -1374,6 +1382,10 @@
 					RelativePath=".\coding\pcm_decoder.c"
 					>
 				</File>
+                <File
+                    RelativePath=".\coding\psv_decoder.c"
+                    >
+                </File>
 				<File
 					RelativePath=".\coding\psx_decoder.c"
 					>

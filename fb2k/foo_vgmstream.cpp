@@ -1,9 +1,6 @@
-/* Winamp plugin interface for vgmstream */
-/* Based on: */
-/*
-** Example Winamp .RAW input plug-in
-** Copyright (c) 1998, Justin Frankel/Nullsoft Inc.
-*/
+/**
+ * vgmstream for foobar2000
+ */
 
 #ifdef _MSC_VER
 #define _CRT_SECURE_NO_DEPRECATE
@@ -35,10 +32,12 @@ extern "C" {
 
 #define APP_NAME "vgmstream plugin"
 #define PLUGIN_DESCRIPTION "vgmstream plugin " VERSION " " __DATE__ "\n" \
-            "by hcs, FastElbja, manakoAT, bxaimc and bnnm\n" \
-            "foobar2000 plugin by Josh W, kode54\n\n" \
-	    "https://github.com/kode54/vgmstream\n\n" \
-            "http://sourceforge.net/projects/vgmstream"
+            "by hcs, FastElbja, manakoAT, bxaimc, snakemeat, soneek, kode54, bnnm and many others\n" \
+            "\n" \
+            "foobar2000 plugin by Josh W, kode54\n" \
+            "\n" \
+            "https://github.com/kode54/vgmstream/\n" \
+            "https://sourceforge.net/projects/vgmstream/ (original)";
 
 
 
@@ -536,6 +535,7 @@ DECLARE_MULTIPLE_FILE_TYPE("LSF Audio File (*.LSF)", lsf);
 DECLARE_MULTIPLE_FILE_TYPE("LWAV Audio File (*.LWAV)", lwav);
 
 DECLARE_MULTIPLE_FILE_TYPE("MATX Audio File (*.MATX)", matx);
+DECLARE_MULTIPLE_FILE_TYPE("MC3 Audio File (*.MC3)", mc3);
 DECLARE_MULTIPLE_FILE_TYPE("MCA Audio File (*.MCA)", mca);
 DECLARE_MULTIPLE_FILE_TYPE("MCG Audio File (*.MCG)", mcg);
 DECLARE_MULTIPLE_FILE_TYPE("MDS Audio File (*.MDS)", mds);
