@@ -493,11 +493,11 @@ int check_extensions(STREAMFILE *streamFile, const char * cmp_exts) {
 
     cmp_ext = cmp_exts;
     do {
-        cmp_len = strstr(cmp_ext, ",") - cmp_ext; /* find next ext; becomes negative if not found */
+        cmp_len = (intptr_t)strstr(cmp_ext, ",") - (intptr_t)cmp_ext; /* find next ext; becomes negative if not found */
         if (cmp_len < 0)
             cmp_len = strlen(cmp_ext); /* total length if more not found */
 
-        if (strncasecmp(ext,cmp_ext, ext_len) == 0 && ext_len == cmp_len)
+        if (ext_len == cmp_len && strncasecmp(ext,cmp_ext, ext_len) == 0)
             return 1;
 
         cmp_ext = strstr(cmp_ext, ",");
