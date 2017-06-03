@@ -17,7 +17,7 @@ EXT_LIBS_OBJS = $(patsubst %.c,%.o,$(EXT_LIBS_SRCS))
 OBJECTS = $(SRC_OBJS) $(CODING_OBJS) $(LAYOUT_OBJS) $(META_OBJS) $(EXT_LIBS_OBJS)
 
 .c.o:
-$(CC) $(CFLAGS) $*.c
+	$(CC) -c $(CFLAGS) $*.c
 
 libvgmstream.a: $(OBJECTS)
 	$(AR) crs libvgmstream.a $(OBJECTS)
