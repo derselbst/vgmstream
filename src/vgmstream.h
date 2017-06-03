@@ -62,7 +62,7 @@ enum { PATH_LIMIT = 32768 };
 #include <libavformat/avformat.h>
 #endif
 
-#include <clHCA.h>
+#include "clHCA.h"
 
 #include "coding/g72x_state.h"
 #include "coding/acm_decoder.h"
