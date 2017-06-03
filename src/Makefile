@@ -19,6 +19,9 @@ OBJECTS = $(SRC_OBJS) $(CODING_OBJS) $(LAYOUT_OBJS) $(META_OBJS) $(EXT_LIBS_OBJS
 libvgmstream.a: $(OBJECTS)
 	$(AR) crs libvgmstream.a $(OBJECTS)
 
+libvgmstream.so: $(OBJECTS)
+	$(CC) $^ -shared -Wl,-soname -Wl,$@.$(SOVERSION) -o $@.$(SOVERSION)
+
 vgmstream-deps:
 	$(CC) $(CFLAGS) -M -o vgmstream-deps
 
